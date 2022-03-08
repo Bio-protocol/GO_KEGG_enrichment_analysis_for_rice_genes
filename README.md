@@ -30,10 +30,10 @@ This is an example workflow to check the quality of the paired-end fastq files u
     - The workflow was constructed based on the __Linux system__ running the Oracle v1.6 to 1.8 java runtime environment (JREs).
 
 - __Required software and versions__: 
-    - [FastQC v0.11.9](http://www.bioinformatics.babraham.ac.uk/projects/download.html#fastqc)
-    - [multiqc](https://github.com/ewels/MultiQC)
-    - [R 3.6.3](https://cran.r-project.org/) for results ploting
-        - [RStudio 1.4](https://rstudio.com/), [ggplot2 3.3.3](https://cran.r-project.org/web/packages/ggplot2/index.html), [tidyr 1.1.2](https://github.com/tidyverse/tidyr)
+    - [clusterProfiler 3.16.1](https://guangchuangyu.github.io/software/clusterProfiler/documentation/)
+    - [GO.db 3.11.4](https://bioconductor.org/packages/release/data/annotation/html/GO.db.html)
+    - [AnnotationHub 2.20.1](https://bioconductor.org/packages/release/bioc/vignettes/AnnotationHub/inst/doc/AnnotationHub.html)
+    - [R]
 
 
 ## Input Data
@@ -61,41 +61,35 @@ CGTTNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNGGAG
 
 ## Major steps
 
-#### Step 1: Prepare rice gene GO annotation files using public annotation databases
+#### Step 1: GO enrichment analysis using annotations from self-curated annotation files
 
-- This step is for running clusterProfiler::enricher with self-provided annoation files. (Step 1.a in the protocol)
+- 1.1 Prepare rice gene GO annotation files using public annotation databases. (Step 1.a in the protocol)
 
 ```
 sh workflow/1_run_fastqc.sh
 ```
 
-#### Step 2: Prepare self-privided GO annoations for clusterProfiler function
-
-- This step is for running clusterProfiler::enricher with self-provided annoation files. (Step 1.b in the protocol)
+- 1.2 Prepare self-privided GO annoations for clusterProfiler function. (Step 1.b in the protocol)
 
 ```
 source("workflow/2_prep_GO_annotation_files.R")
 ```
 
-#### Step 3: Run universal enrichment function, enricher
-
-- Step 1.c and 1.d in the protocol
+- 1.3 Run universal enrichment function, enricher. (Step 1.c and 1.d in the protocol)
 
 ```
 source("workflow/3_run_enricher.R")
 ```
 
-#### Step 4: GO enrichment analysis using annotations from AnnotationHub package
+#### Step 2: GO enrichment analysis using annotations from AnnotationHub package
 
-- Step 2a and 2b in protocol
 
 ```
 source("workflow/4_run_enrichGO.R")
 ```
 
-#### Step 5: KEGG enrichment analysis using annotations from KEGG database
+#### Step 3: KEGG enrichment analysis using annotations from KEGG database
 
-- Step 3 in the protocol
 
 ```
 source("workflow/5_run_enrichKEGG.R")
