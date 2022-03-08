@@ -61,26 +61,44 @@ CGTTNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNGGAG
 
 ## Major steps
 
-#### Step 1: running the FastQC to conduct quality checking
-- Note that you have to normalize the path in the shell script.
+#### Step 1: Prepare rice gene GO annotation files using public annotation databases
+
+- This step is for running clusterProfiler::enricher with self-provided annoation files. (Step 1.a in the protocol)
 
 ```
 sh workflow/1_run_fastqc.sh
 ```
 
-#### Step 2: aggregate results from FastQC
+#### Step 2: Prepare self-privided GO annoations for clusterProfiler function
+
+- This step is for running clusterProfiler::enricher with self-provided annoation files. (Step 1.b in the protocol)
 
 ```
-sh workflow/2_aggregate_results.sh
+source("2_prep_GO_annotation_files.R")
 ```
 
-#### Step 3: view the results
+#### Step 3: Run universal enrichment function, enricher
 
-- Results can be visualized by clicking `output/multiqc_report.html`.
-- Alternatively, you can plot the results yourself using the below R code.
+- Step 1.c and 1.d in the protocol
 
 ```
-3_visualize_results.Rmd
+source("3_run_enricher.R")
+```
+
+#### Step 4: GO enrichment analysis using annotations from AnnotationHub package
+
+- Step 2a and 2b in protocol
+
+```
+source("4_run_enrichGO.R")
+```
+
+#### Step 5: KEGG enrichment analysis using annotations from KEGG database
+
+- Step 3 in the protocol
+
+```
+source("5_run_enrichKEGG.R")
 ```
 
 ## Expected results
