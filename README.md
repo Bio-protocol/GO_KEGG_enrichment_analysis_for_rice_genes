@@ -74,7 +74,7 @@ sh workflow/1_run_fastqc.sh
 - This step is for running clusterProfiler::enricher with self-provided annoation files. (Step 1.b in the protocol)
 
 ```
-source("2_prep_GO_annotation_files.R")
+source("workflow/2_prep_GO_annotation_files.R")
 ```
 
 #### Step 3: Run universal enrichment function, enricher
@@ -82,7 +82,7 @@ source("2_prep_GO_annotation_files.R")
 - Step 1.c and 1.d in the protocol
 
 ```
-source("3_run_enricher.R")
+source("workflow/3_run_enricher.R")
 ```
 
 #### Step 4: GO enrichment analysis using annotations from AnnotationHub package
@@ -90,7 +90,7 @@ source("3_run_enricher.R")
 - Step 2a and 2b in protocol
 
 ```
-source("4_run_enrichGO.R")
+source("workflow/4_run_enrichGO.R")
 ```
 
 #### Step 5: KEGG enrichment analysis using annotations from KEGG database
@@ -98,7 +98,7 @@ source("4_run_enrichGO.R")
 - Step 3 in the protocol
 
 ```
-source("5_run_enrichKEGG.R")
+source("workflow/5_run_enrichKEGG.R")
 ```
 
 ## Expected results
