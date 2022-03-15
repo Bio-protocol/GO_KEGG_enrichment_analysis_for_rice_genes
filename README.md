@@ -62,10 +62,11 @@ source("workflow/5_run_enrichKEGG.R")
 ```
 
 ## Expected results
-![](output/Top10_go_table_screenshot.png)
-![](output/go_dotplot.png)
-![](output/Top10_kegg_table_screenshot.png)
-![](output/kegg_dotplot.png)
+
+With the input gene list, twenty-nine GO terms were enriched from the GO enrichment analysis using the self-curated annotation files, while none when using annoations from the AnnotationHub package. And eleven KEGG terms were enriched using the annotation from the KEGG database. The result tables and the visualization dot plots are listed in the /output folder.
+
+
+
 
 ## License
 It is a free and open source software, licensed under []() (choose a license from the suggested list:  [GPLv3](https://github.com/github/choosealicense.com/blob/gh-pages/_licenses/gpl-3.0.txt), [MIT](https://github.com/github/choosealicense.com/blob/gh-pages/LICENSE.md), or [CC BY 4.0](https://github.com/github/choosealicense.com/blob/gh-pages/_licenses/cc-by-4.0.txt)).
