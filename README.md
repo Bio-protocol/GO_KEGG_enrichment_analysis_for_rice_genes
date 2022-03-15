@@ -4,7 +4,7 @@
 
 ## Overview
 
-This is a workflow for using clusterProfiler to perform GO and KEGG enrichment analysis for gene lists from rice. The gene annotations are the key to these analyses. For GO annotaion, two types of sources are used here: 1. self-curated annotations derived from public rice databases, and 2. GO annotatons from a bioconductor package, AnnotationHub. For KEGG annotation, the gene annotation is directly retrieved from the KEGG database while using the clusterProfiler enrichment function.
+This is a workflow for using clusterProfiler software to perform GO and KEGG enrichment analysis for gene lists from rice. The gene annotations are the key to these analyses. For GO annotaion, two types of sources are used here: 1. self-curated annotations derived from public rice databases, and 2. GO annotatons from a bioconductor package, AnnotationHub. For KEGG annotation, the gene annotation is directly retrieved from the KEGG database when using the clusterProfiler enrichment function.
 
 ## Installation
 
@@ -22,9 +22,9 @@ This is a workflow for using clusterProfiler to perform GO and KEGG enrichment a
 ## Input Data
 
 1.	Target gene list (genes.txt), background gene list (bkgd.txt, optional but recommended). The gene IDs are the RAP IDs in this protocol, e.g. Os01g0102500, Os01g0106300. See the /input folder.
-2.	The gene annotation file obtained from The Rice Annotation Project (RAP) Database (RAP-DB), including both the GO annotation information and RAP gene ID to RAP transcript ID conversion information. [Link](https://rapdb.dna.affrc.go.jp/download/archive/irgsp1/IRGSP-1.0_representative_annotation_2021-11-11.tsv.gz) 
-3.	The gene annotation file from the OryzaBase website. [Link](https://shigen.nig.ac.jp/rice/oryzabase/download/gene)
-4.	RAP ID to Entrez ID conversion table from the He Lab at Fujian Agriculture and Forestry University, China. [Link](http://bioinformatics.fafu.edu.cn/riceidtable/)
+2.	The gene annotation file obtained from The Rice Annotation Project (RAP) Database (RAP-DB), including both the GO annotation information and RAP gene ID to RAP transcript ID conversion information. [Link.](https://rapdb.dna.affrc.go.jp/download/archive/irgsp1/IRGSP-1.0_representative_annotation_2021-11-11.tsv.gz) 
+3.	The gene annotation file from the OryzaBase website. [Link.](https://shigen.nig.ac.jp/rice/oryzabase/download/gene)
+4.	RAP ID to Entrez ID conversion table from the He Lab at Fujian Agriculture and Forestry University, China. [Link.](http://bioinformatics.fafu.edu.cn/riceidtable/)
 
 
 ## Major steps
@@ -63,9 +63,7 @@ source("workflow/5_run_enrichKEGG.R")
 
 ## Expected results
 
-With the input gene list, twenty-nine GO terms were enriched from the GO enrichment analysis using the self-curated annotation files, while none when using annoations from the AnnotationHub package. And eleven KEGG terms were enriched using the annotation from the KEGG database. The result tables and the visualization dot plots are listed in the /output folder.
-
-
+With the input gene lists, twenty-nine GO terms were enriched in the GO enrichment analysis using the self-curated annotation files, while none when using annoations from the AnnotationHub package. And eleven KEGG terms were enriched in the KEGG enrichment analysis using the annotation from the KEGG database. The result tables and the visualization dot plots are in the /output folder.
 
 
 ## License
