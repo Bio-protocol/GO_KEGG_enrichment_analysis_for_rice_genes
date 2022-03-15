@@ -1,3 +1,0 @@
-Module	Section	Sample Name	Source
-FastQC	all_sections	reads1	/common/jyanglab/jyang21/projects/template/cache/reads1_fastqc.zip
-FastQC	all_sections	reads2	/common/jyanglab/jyang21/projects/template/cache/reads2_fastqc.zip

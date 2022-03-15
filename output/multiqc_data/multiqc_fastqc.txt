@@ -1,3 +1,0 @@
-Sample	Filename	File type	Encoding	Total Sequences	Sequences flagged as poor quality	Sequence length	%GC	total_deduplicated_percentage	avg_sequence_length	basic_statistics	per_base_sequence_quality	per_tile_sequence_quality	per_sequence_quality_scores	per_base_sequence_content	per_sequence_gc_content	per_base_n_content	sequence_length_distribution	sequence_duplication_levels	overrepresented_sequences	adapter_content
-reads1	reads1.fastq	Conventional base calls	Illumina 1.5	25000.0	0.0	100.0	68.0	99.46000000000001	100.0	pass	fail	pass	pass	pass	fail	pass	pass	pass	pass	pass
-reads2	reads2.fastq	Conventional base calls	Illumina 1.5	25000.0	0.0	100.0	68.0	99.884	100.0	pass	fail	pass	pass	warn	warn	pass	pass	pass	pass	pass
