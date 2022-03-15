@@ -51,22 +51,21 @@ source("workflow/3_run_enricher.R")
 
 #### Step 2: GO enrichment analysis using annotations from AnnotationHub package
 
-
 ```
 source("workflow/4_run_enrichGO.R")
 ```
 
 #### Step 3: KEGG enrichment analysis using annotations from KEGG database
 
-
 ```
 source("workflow/5_run_enrichKEGG.R")
 ```
 
 ## Expected results
-
-![](graphs/figure1.pdf)
-![](graphs/figure2.pdf)
+![](output/Top10_go_table_screenshot.png)
+![](output/go_dotplot.png)
+![](output/Top10_kegg_table_screenshot.png)
+![](output/kegg_dotplot.png)
 
 ## License
 It is a free and open source software, licensed under []() (choose a license from the suggested list:  [GPLv3](https://github.com/github/choosealicense.com/blob/gh-pages/_licenses/gpl-3.0.txt), [MIT](https://github.com/github/choosealicense.com/blob/gh-pages/LICENSE.md), or [CC BY 4.0](https://github.com/github/choosealicense.com/blob/gh-pages/_licenses/cc-by-4.0.txt)).
