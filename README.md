@@ -36,7 +36,8 @@ This is a workflow for using clusterProfiler software to perform GO and KEGG enr
 ```
 sh workflow/1_curate_rice_GO_annotation.sh
 ```
-Now save the result files in a folder /data on local computer, and run the following code in R. 
+
+After this step, work on local computer. Create two new folders: data and output. data: to save intermediate result files. output: to save the final files. First, save the files from Step 1 into the data folder. Also, run the following code in R.
 
 - 1.2 Prepare self-privided GO annoations for clusterProfiler function. (Step 1.b in the protocol)
 
