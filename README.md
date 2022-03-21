@@ -33,11 +33,12 @@ This is a workflow for using clusterProfiler software to perform GO and KEGG enr
 
 - 1.1 Prepare rice gene GO annotation files using public annotation databases. (Step 1.a in the protocol)
 
+Run the command in Linux.
 ```
 sh workflow/1_curate_rice_GO_annotation.sh
 ```
 
-After this step, work on local computer. Create two new folders: data and output. data: to save intermediate result files. output: to save the final files. First, save the files from Step 1 into the data folder. Also, run the following code in R.
+After this step, work on a local computer and run the following scripts in R. Also, create two new folders: data and output. data: to save intermediate result files. output: to save the final files. Save the files from Step 1 into the data folder. 
 
 - 1.2 Prepare self-privided GO annoations for clusterProfiler function. (Step 1.b in the protocol)
 
