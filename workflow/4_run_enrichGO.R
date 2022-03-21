@@ -26,16 +26,15 @@ IDtable <- read.csv("data/riceIDtable.csv")
 # convert rapdb IDs into entrez IDs
 genes_eid <- IDtable[match(genes, IDtable$rapdb), "entrezgene"]
 # remove NAs
-genes_eid <- genes_eid[!is.na(genes_eid)]
+genes_eid <- as.character(genes_eid[!is.na(genes_eid)])
 bkgd_eid <- IDtable[match(bkgd, IDtable$rapdb), "entrezgene"]
-bkgd_eid <- genes_eid[!is.na(bkgd_eid)]
+bkgd_eid <- as.character(bkgd_eid[!is.na(bkgd_eid)])
 
 ## R
 ## run enrichGO function
 go2 <- enrichGO(gene = genes_eid, # a vector of gene id
                 universe = bkgd_eid, # background genes
                 OrgDb         = rice, # OrgDb object
-                keytype = "ENTREZID", # keytype of input gene
                 ont           = "BP" # One of "MF", "BP", and "CC" subontologies
                 )
 go2_df <- as.data.frame(go2) 
