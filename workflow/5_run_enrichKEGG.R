@@ -20,4 +20,7 @@ kegg_df <- as.data.frame(kegg)
 write.table(kegg_df, "output/kegg_df.txt",  sep="\t", row.names=FALSE, quote=FALSE)
 
 ## dot plot
-dotplot(kegg, showCategory=10)
+p1 <- dotplot(kegg, showCategory=10)
+ggsave(p1,
+       filename = "output/kegg_dotplot.pdf",
+       height = 12,width = 16,units = "cm") 
