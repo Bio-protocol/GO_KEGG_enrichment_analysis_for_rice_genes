@@ -18,6 +18,13 @@ This is a workflow for using clusterProfiler software to perform GO and KEGG enr
     - [dplyr 1.0.7](https://dplyr.tidyverse.org/)
     - [data.table 1.14.0](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html)
 
+Install required R packages in R. Skip the packages that have already been installed.
+
+```
+packages <- c("clusterProfiler", "GO.db", "AnnotationHub", "dplyr", "data.table")
+install.packages(setdiff(packages, rownames(installed.packages())))
+```
+
 
 ## Input Data
 
