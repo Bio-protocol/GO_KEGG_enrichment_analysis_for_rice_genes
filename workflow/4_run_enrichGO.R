@@ -15,13 +15,13 @@ rice <- hub[["AH80658"]]
 
 ## read input gene lists and convert IDs
 # genes of interest
-genes <- read.table("data/genes.txt", header=T)
+genes <- read.table("input/genes.txt", header=T)
 genes <- genes[[1]]
 # background genes
-bkgd <- read.table("data/bkgd.txt", header=T)
+bkgd <- read.table("input/bkgd.txt", header=T)
 bkgd <- bkgd[[1]]
 # ID conversion table
-IDtable <- read.csv("data/riceIDtable.csv")
+IDtable <- read.csv("input/riceIDtable.csv")
 
 # convert rapdb IDs into entrez IDs
 genes_eid <- IDtable[match(genes, IDtable$rapdb), "entrezgene"]
