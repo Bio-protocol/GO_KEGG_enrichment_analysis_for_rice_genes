@@ -1,15 +1,17 @@
+##Step 2: GO enrichment analysis using annotations from AnnotationHub package
+
 ## R
 library(AnnotationHub) 
 # find rice orgDb
 hub <- AnnotationHub()
-query(hub, c("Oryza sativa","orgdb"))
+query(hub, c("Oryza sativa","orgdb")) #output changed
 # output:
-# AH80658 | org.Oryza_sativa_(japonica_cultivar-group).eg.sqlite
-# AH80659 | org.Oryza_sativa_Japonica_Group.eg.sqlite           
-# AH80660 | org.Oryza_sativa_subsp._japonica.eg.sqlite  
+# AH96211 | org.Oryza_sativa_(japonica_cultivar-group).eg.sqlite
+# AH96212 | org.Oryza_sativa_Japonica_Group.eg.sqlite           
+# AH96213 | org.Oryza_sativa_subsp._japonica.eg.sqlite
 
 # select the first one (as all three are very similar)
-rice <- hub[["AH80658"]]
+rice <- hub[["AH96211"]] #changed based on new output
 # checked keys in the database
 # keyTypes(rice) 
 
@@ -32,6 +34,7 @@ bkgd_eid <- as.character(bkgd_eid[!is.na(bkgd_eid)])
 
 ## R
 ## run enrichGO function
+library(clusterProfiler) #library
 go2 <- enrichGO(gene = genes_eid, # a vector of gene id
                 universe = bkgd_eid, # background genes
                 OrgDb         = rice, # OrgDb object
