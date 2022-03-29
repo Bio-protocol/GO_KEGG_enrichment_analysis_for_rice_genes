@@ -1,18 +1,27 @@
-## R
+## Usage:
+# An R script to perfrom KEGG enrichement analysis using an clusterProfiler function with gene annotaitons from the KEGG database.
+# Save the output to a table, and visualize the results by a plot.
+
+library(clusterProfiler)
+library(data.table)
+
 ## convert the gene IDs to match with kegg database
 # read the rice gene annotaiton table (large file)
-library(data.table)
 anno <- as.data.frame(fread("data/IRGSP-1.0_representative_annotation_2021-11-11.tsv", quote=""))
 # convert the gene ID to transcript ID (the kegg ID)
 genes_transID <- anno[match(genes, anno$Locus_ID),"Transcript_ID"]
 bkgd_transID <- anno[match(bkgd, anno$Locus_ID),"Transcript_ID"]
 
-## R
 ## run enrichKEGG
 kegg <- enrichKEGG(gene = genes_transID, # a vector of gene id
                    universe = bkgd_transID, # background genes
                    organism = "dosa", # kegg organism
-                   keyType = "kegg" # keytype of input gene
+                   keyType = "kegg", # keytype of input gene
+                   pvalueCutoff = 0.05, # p-value cutoff (default)
+                   pAdjustMethod = "BH", # multiple testing correction method to calculate adjusted p-value (default)
+                   qvalueCutoff = 0.2, # q-value cutoff (default). q value: local FDR corrected p-value.
+                   minGSSize = 10, # minimal size of genes annotated for testing (default)
+                   maxGSSize = 500  # maximal size of genes annotated for testing (default)
                    )
 
 ## save results
