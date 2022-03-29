@@ -1,4 +1,7 @@
-## Bash
+## Usage:
+# A bash script to extract rice genes' GO annotations from RAPDB and OryzaBase, 
+# and combine the annotations together into one text file.
+
 # download annotation from RAPDB
 wget https://rapdb.dna.affrc.go.jp/download/archive/irgsp1/IRGSP-1.0_representative_annotation_2021-11-11.tsv.gz
 gunzip IRGSP-1.0_representative_annotation_2021-11-11.tsv.gz
@@ -16,4 +19,3 @@ cat 'download?classtag=GENE_EN_LIST' | cut -f11,16 | grep -v "^\t" | perl -nle '
 
 # combine the two annotation files together
 cat rice_rapdb_go_list.tsv rice_oryzabase_go_list.tsv | sort -u | perl -nple 'BEGIN {print "go_id\tgene_id";} ' > rice_combined_go_list.tsv
-
