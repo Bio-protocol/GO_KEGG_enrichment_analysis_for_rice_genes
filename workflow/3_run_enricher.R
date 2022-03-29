@@ -18,7 +18,6 @@ term2gene <- read.table("data/goid2gene_BP.txt", sep="\t", header=T, quote="", s
 # TERM2NAME
 term2name <- read.table("data/godb_BP.txt", sep="\t", header=T, quote="", stringsAsFactors = F)
 
-## R
 ## run the universal enrichment function, enricher
 go <- enricher(gene = genes, # a vector of gene id
                universe = bkgd, # background genes
