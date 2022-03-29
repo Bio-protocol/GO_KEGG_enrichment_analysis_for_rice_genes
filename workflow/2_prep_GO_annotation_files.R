@@ -1,7 +1,12 @@
-## R
+## Usage: 
+# An R script to make GO term ID to GO term name mapping tables and gene annotation (Gene ID to GO term ID) tables, 
+# one table per one GO subcategory, i.e. BP, MF, CC.
+
+library(GO.db)
+library(dplyr)
+
 ## make GO ID-GO name mapping tables
 # extract GO term information from a Bioconductor package, GO.db 
-library(GO.db)
 go_table <- as.data.frame(GOTERM)
 
 # only take go_id, Term, and Oncology columns and remove duplicated rows
@@ -22,7 +27,6 @@ write.table(godb_CC, "data/godb_CC.txt", sep = "\t", quote = FALSE, row.names = 
 goid2gene_all <- read.table("data/rice_combined_go_list.tsv", header=T, sep="\t", quote="", stringsAsFactors = F)
 
 # seperate genes based on their GO annotation types
-library(dplyr)
 goid2gene_BP <- goid2gene_all %>% dplyr::filter(go_id %in% godb_BP$go_id)
 goid2gene_MF <- goid2gene_all %>% dplyr::filter(go_id %in% godb_MF$go_id)
 goid2gene_CC <- goid2gene_all %>% dplyr::filter(go_id %in% godb_CC$go_id)
