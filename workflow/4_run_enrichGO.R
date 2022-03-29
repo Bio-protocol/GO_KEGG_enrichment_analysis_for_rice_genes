@@ -39,7 +39,11 @@ go2 <- enrichGO(gene = genes_eid, # a vector of gene id
                 universe = bkgd_eid, # background genes
                 OrgDb         = rice, # OrgDb object
                 ont           = "BP", # One of "MF", "BP", and "CC" subontologies
-                
+                pvalueCutoff = 0.05, # p-value cutoff (default)
+                pAdjustMethod = "BH", # multiple testing correction method to calculate adjusted p-value (default)
+                qvalueCutoff = 0.2, # q-value cutoff (default). q value: local FDR corrected p-value.
+                minGSSize = 10, # minimal size of genes annotated for testing (default)
+                maxGSSize = 500  # maximal size of genes annotated for testing (default)
                 )
 go2_df <- as.data.frame(go2) 
 # result：no enriched GO terms
