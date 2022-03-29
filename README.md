@@ -17,12 +17,15 @@ This is a workflow for using clusterProfiler software to perform GO and KEGG enr
     - [AnnotationHub 2.20.1](https://bioconductor.org/packages/release/bioc/vignettes/AnnotationHub/inst/doc/AnnotationHub.html)
     - [dplyr 1.0.7](https://dplyr.tidyverse.org/)
     - [data.table 1.14.0](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html)
+    - [ggplot2 3.3.5] (https://ggplot2.tidyverse.org/)
 
-Install required R packages in R. Skip the packages that have already been installed.
+Install required R packages through Biocondutor. Skip the packages that have already been installed.
 
 ```
-packages <- c("clusterProfiler", "GO.db", "AnnotationHub", "dplyr", "data.table")
-install.packages(setdiff(packages, rownames(installed.packages())))
+if (!require("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
+packages <- c("clusterProfiler", "GO.db", "AnnotationHub", "dplyr", "data.table", "ggplot2")
+BiocManager::install(setdiff(packages, rownames(installed.packages())))
 ```
 
 
