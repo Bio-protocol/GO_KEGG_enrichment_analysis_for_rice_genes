@@ -1,4 +1,5 @@
-## Usage: an R script to run the univeral enrichment function from clusterProfiler using self-provided gene lists and gene annotation files. Save the output to a table, and visualize the results by a plot.
+## Usage: an R script to run the univeral enrichment function from clusterProfiler using self-provided gene lists and gene annotation files. 
+## Save the output to a table, and visualize the results by a plot.
 
 library(clusterProfiler)
 library(ggplot2)
