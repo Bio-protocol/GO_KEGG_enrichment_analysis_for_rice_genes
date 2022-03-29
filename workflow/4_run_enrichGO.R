@@ -12,7 +12,7 @@ query(hub, c("Oryza sativa","orgdb"))
 # AH80659 | org.Oryza_sativa_Japonica_Group.eg.sqlite           
 # AH80660 | org.Oryza_sativa_subsp._japonica.eg.sqlite  
 
-# select the first one, as all three are very similar
+# select the first one (as all three are very similar)
 rice <- hub[["AH80658"]]
 # checked keys in the database
 # keyTypes(rice) 
@@ -21,24 +21,17 @@ rice <- hub[["AH80658"]]
 # genes of interest
 genes <- read.table("input/genes.txt", header=T)
 genes <- genes[[1]]
-# background genes
-bkgd <- read.table("input/bkgd.txt", header=T)
-bkgd <- bkgd[[1]]
 # ID conversion table
 IDtable <- read.csv("input/riceIDtable.csv")
-
 # convert rapdb IDs into entrez IDs
 genes_eid <- IDtable[match(genes, IDtable$rapdb), "entrezgene"]
 # remove NAs
 genes_eid <- as.character(genes_eid[!is.na(genes_eid)])
-bkgd_eid <- IDtable[match(bkgd, IDtable$rapdb), "entrezgene"]
-bkgd_eid <- as.character(bkgd_eid[!is.na(bkgd_eid)])
 
 ## run enrichGO function
 go2 <- enrichGO(gene = genes_eid, # a vector of gene id
-                universe = bkgd_eid, # background genes
-                OrgDb         = rice, # OrgDb object
-                ont           = "BP", # One of "MF", "BP", and "CC" subontologies
+                OrgDb = rice, # OrgDb object
+                ont = "BP", # One of "MF", "BP", and "CC" subontologies
                 pvalueCutoff = 0.05, # p-value cutoff (default)
                 pAdjustMethod = "BH", # multiple testing correction method to calculate adjusted p-value (default)
                 qvalueCutoff = 0.2, # q-value cutoff (default). q value: local FDR corrected p-value.
