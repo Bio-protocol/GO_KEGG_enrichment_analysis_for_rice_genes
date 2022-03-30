@@ -1,7 +1,7 @@
-## Usage:
-# A bash script to extract rice genes' GO annotations from RAPDB and OryzaBase, 
-# and combine the annotations together into one text file.
 
+## Step 1.1 Prepare rice gene GO annotation files using public annotation databases. (Step 1.a in the protocol)
+
+## Bash
 # download annotation from RAPDB
 wget https://rapdb.dna.affrc.go.jp/download/archive/irgsp1/IRGSP-1.0_representative_annotation_2021-11-11.tsv.gz
 gunzip IRGSP-1.0_representative_annotation_2021-11-11.tsv.gz
