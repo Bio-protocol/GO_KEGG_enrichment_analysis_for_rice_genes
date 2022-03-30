@@ -1,5 +1,4 @@
 ## Step 1.2 Prepare self-privided GO annoations for clusterProfiler function.
-
 ## An R script to make GO term ID to GO term name mapping tables and gene annotation (Gene ID to GO term ID) tables, 
 ## one table per one GO subcategory, i.e. BP, MF, CC.
 
