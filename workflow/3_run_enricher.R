@@ -1,5 +1,9 @@
+## Step 1.3 Run universal enrichment function, enricher.
+## An R script to run the univeral enrichment function from clusterProfiler using self-provided gene lists and gene annotation files. 
+## Save the output to a table, and visualize the results by a plot.
 
-##Step 1.3 Run universal enrichment function, enricher. (Step 1.c and 1.d in the protocol)
+library(clusterProfiler)
+library(ggplot2)
 
 ## read gene lists and annotation files
 # genes of interest
@@ -15,7 +19,6 @@ term2gene <- read.table("cache/goid2gene_BP.txt", sep="\t", header=T, quote="", 
 term2name <- read.table("cache/godb_BP.txt", sep="\t", header=T, quote="", stringsAsFactors = F) #change dir
 
 ## run the universal enrichment function, enricher
-library(clusterProfiler) #library
 go <- enricher(gene = genes, # a vector of gene id
                universe = bkgd, # background genes
                TERM2GENE = term2gene, # user input annotation of TERM TO GENE mapping 
@@ -32,7 +35,6 @@ go_df <- as.data.frame(go)
 write.table(go_df, "output/go_df.txt", sep="\t", row.names=FALSE, quote=FALSE)
 
 ## dot plot
-library(ggplot2) #library
 p1 <- dotplot(go, showCategory=10)
 ggsave(p1,
        filename = "figures/go_dotplot.pdf",
