@@ -38,7 +38,9 @@ kegg_df <- as.data.frame(kegg)
 write.table(kegg_df, "output/kegg_df.txt",  sep="\t", row.names=FALSE, quote=FALSE)
 
 ## dot plot
-p1 <- dotplot(kegg, showCategory=10)
+p1 <- dotplot(kegg, showCategory=10,
+              title = "Top 10 most statistically significant enriched KEGG terms",
+              font.size = 10)
 ggsave(p1,
-       filename = "figures/kegg_dotplot.pdf",
-       height = 12,width = 16,units = "cm") 
+       filename = "figures/kegg_dotplot.png",
+       height = 12,width = 22,units = "cm") 
