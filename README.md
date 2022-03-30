@@ -38,7 +38,7 @@ BiocManager::install(setdiff(packages, rownames(installed.packages())))
 
 1.	Target gene list (genes.txt), background gene list (bkgd.txt, optional but recommended). The gene IDs are the RAP IDs in this protocol, e.g. Os01g0102500, Os01g0106300. See the /input folder.
 2.	The gene annotation file obtained from The Rice Annotation Project (RAP) Database (RAP-DB), including both the GO annotation information and RAP gene ID to RAP transcript ID conversion information. This file is a large data table, where each row is an individual transcript ID, and each column is a gene annotation information, and "GO" is the column which contains the GO annotations which are extracted further into the self-curated annotation files. [Link.](https://rapdb.dna.affrc.go.jp/download/archive/irgsp1/IRGSP-1.0_representative_annotation_2021-11-11.tsv.gz) 
-3.	The gene annotation file from the OryzaBase website. This file is also a large data table, similar to the table downloaded from RAPDB. Each row is for a "Trait Gene ID", with annotations of "RAP ID" and "Gene Ontology", which are used for generating self-curated annotation files. [Link.](https://shigen.nig.ac.jp/rice/oryzabase/download/gene)
+3.	The gene annotation file from the OryzaBase website. This file is also a large data table, where each row is for a "Trait Gene ID", with annotations of "RAP ID" and "Gene Ontology", which are used for generating self-curated annotation files. [Link.](https://shigen.nig.ac.jp/rice/oryzabase/download/gene)
 4.	RAP ID to Entrez ID conversion table from the He Lab at Fujian Agriculture and Forestry University, China. [Link.](http://bioinformatics.fafu.edu.cn/riceidtable/)
 
 
