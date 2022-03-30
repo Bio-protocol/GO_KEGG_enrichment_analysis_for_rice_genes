@@ -76,7 +76,7 @@ source("workflow/5_run_enrichKEGG.R")
 
 ## Expected results
 
-With the input gene lists, twenty-nine GO terms were enriched in the GO enrichment analysis using the self-curated annotation files, while none when using annoations from the AnnotationHub package. And eleven KEGG terms were enriched in the KEGG enrichment analysis using the annotation from the KEGG database. The result tables and the visualization dot plots are in the /output folder.
+With the input gene lists, twenty-nine GO terms were enriched in the GO enrichment analysis using the self-curated annotation files, while none when using annoations from the AnnotationHub package. And eleven KEGG terms were enriched in the KEGG enrichment analysis using the annotation from the KEGG database. The result tables can be found in the /output folder, and the plots are in the /figures folder.
 
 
 ## License
