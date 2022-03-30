@@ -1,5 +1,5 @@
 ## Step 1.1 Prepare rice gene GO annotation files using public annotation databases.
-# A bash script to extract rice genes' GO annotations from RAPDB and OryzaBase, 
+# A bash script to extract rice gene GO annotations from RAPDB and OryzaBase, 
 # and combine the annotations together into one text file.
 
 # download annotation from RAPDB
