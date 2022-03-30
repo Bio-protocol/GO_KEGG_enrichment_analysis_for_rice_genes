@@ -1,3 +1,4 @@
+
 ## Step 1.1 Prepare rice gene GO annotation files using public annotation databases. (Step 1.a in the protocol)
 
 ## Bash

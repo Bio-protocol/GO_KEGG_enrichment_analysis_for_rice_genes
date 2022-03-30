@@ -1,9 +1,7 @@
 ##Step Prepare self-privided GO annoations for clusterProfiler function. (Step 1.b in the protocol)
 
-## R
 ## make GO ID-GO name mapping tables
 # extract GO term information from a Bioconductor package, GO.db 
-library(GO.db)
 go_table <- as.data.frame(GOTERM)
 
 # only take go_id, Term, and Oncology columns and remove duplicated rows
@@ -24,12 +22,13 @@ write.table(godb_CC, "cache/godb_CC.txt", sep = "\t", quote = FALSE, row.names =
 goid2gene_all <- read.table("cache/rice_combined_go_list.tsv", header=T, sep="\t", quote="", stringsAsFactors = F) #change dir
 
 # seperate genes based on their GO annotation types
-library(dplyr)
 goid2gene_BP <- goid2gene_all %>% dplyr::filter(go_id %in% godb_BP$go_id)
 goid2gene_MF <- goid2gene_all %>% dplyr::filter(go_id %in% godb_MF$go_id)
 goid2gene_CC <- goid2gene_all %>% dplyr::filter(go_id %in% godb_CC$go_id)
 
 # save results
+
 write.table(goid2gene_BP, "cache/goid2gene_BP.txt", sep="\t", row.names=FALSE, quote=FALSE) #change dir
 write.table(goid2gene_MF, "cache/goid2gene_MF.txt", sep="\t", row.names=FALSE, quote=FALSE) #change dir
 write.table(goid2gene_CC, "cache/goid2gene_CC.txt", sep="\t", row.names=FALSE, quote=FALSE) #change dir
+

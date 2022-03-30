@@ -1,3 +1,4 @@
+
 ##Step 3: KEGG enrichment analysis using annotations from KEGG database
 
 ## R
@@ -5,17 +6,23 @@
 # read the rice gene annotaiton table (large file)
 library(data.table)
 anno <- as.data.frame(fread("cache/IRGSP-1.0_representative_annotation_2021-11-11.tsv", quote="")) #change dir
+
+
 # convert the gene ID to transcript ID (the kegg ID)
 genes_transID <- anno[match(genes, anno$Locus_ID),"Transcript_ID"]
 bkgd_transID <- anno[match(bkgd, anno$Locus_ID),"Transcript_ID"]
 
-## R
 ## run enrichKEGG
 library(clusterProfiler) #library
 kegg <- enrichKEGG(gene = genes_transID, # a vector of gene id
                    universe = bkgd_transID, # background genes
                    organism = "dosa", # kegg organism
-                   keyType = "kegg" # keytype of input gene
+                   keyType = "kegg", # keytype of input gene
+                   pvalueCutoff = 0.05, # p-value cutoff (default)
+                   pAdjustMethod = "BH", # multiple testing correction method to calculate adjusted p-value (default)
+                   qvalueCutoff = 0.2, # q-value cutoff (default). q value: local FDR corrected p-value.
+                   minGSSize = 10, # minimal size of genes annotated for testing (default)
+                   maxGSSize = 500  # maximal size of genes annotated for testing (default)
                    )
 
 ## save results

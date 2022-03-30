@@ -1,7 +1,10 @@
+
 ##Step 2: GO enrichment analysis using annotations from AnnotationHub package
 
-## R
+
 library(AnnotationHub) 
+library(clusterProfiler)
+
 # find rice orgDb
 hub <- AnnotationHub()
 query(hub, c("Oryza sativa","orgdb")) #output changed
@@ -19,26 +22,23 @@ rice <- hub[["AH96211"]] #changed based on new output
 # genes of interest
 genes <- read.table("input/genes.txt", header=T)
 genes <- genes[[1]]
-# background genes
-bkgd <- read.table("input/bkgd.txt", header=T)
-bkgd <- bkgd[[1]]
 # ID conversion table
 IDtable <- read.csv("input/riceIDtable.csv")
-
 # convert rapdb IDs into entrez IDs
 genes_eid <- IDtable[match(genes, IDtable$rapdb), "entrezgene"]
 # remove NAs
 genes_eid <- as.character(genes_eid[!is.na(genes_eid)])
-bkgd_eid <- IDtable[match(bkgd, IDtable$rapdb), "entrezgene"]
-bkgd_eid <- as.character(bkgd_eid[!is.na(bkgd_eid)])
 
-## R
 ## run enrichGO function
 library(clusterProfiler) #library
 go2 <- enrichGO(gene = genes_eid, # a vector of gene id
-                universe = bkgd_eid, # background genes
-                OrgDb         = rice, # OrgDb object
-                ont           = "BP" # One of "MF", "BP", and "CC" subontologies
+                OrgDb = rice, # OrgDb object
+                ont = "BP", # One of "MF", "BP", and "CC" subontologies
+                pvalueCutoff = 0.05, # p-value cutoff (default)
+                pAdjustMethod = "BH", # multiple testing correction method to calculate adjusted p-value (default)
+                qvalueCutoff = 0.2, # q-value cutoff (default). q value: local FDR corrected p-value.
+                minGSSize = 10, # minimal size of genes annotated for testing (default)
+                maxGSSize = 500  # maximal size of genes annotated for testing (default)
                 )
 go2_df <- as.data.frame(go2) 
 # result：no enriched GO terms

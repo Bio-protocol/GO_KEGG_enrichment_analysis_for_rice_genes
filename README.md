@@ -17,12 +17,15 @@ This is a workflow for using clusterProfiler software to perform GO and KEGG enr
     - [AnnotationHub 2.20.1](https://bioconductor.org/packages/release/bioc/vignettes/AnnotationHub/inst/doc/AnnotationHub.html)
     - [dplyr 1.0.7](https://dplyr.tidyverse.org/)
     - [data.table 1.14.0](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html)
+    - [ggplot2 3.3.5](https://ggplot2.tidyverse.org/)
 
-Install required R packages in R. Skip the packages that have already been installed.
+Install required R packages through Biocondutor. Skip the packages that have already been installed.
 
 ```
-packages <- c("clusterProfiler", "GO.db", "AnnotationHub", "dplyr", "data.table")
-install.packages(setdiff(packages, rownames(installed.packages())))
+if (!require("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
+packages <- c("clusterProfiler", "GO.db", "AnnotationHub", "dplyr", "data.table", "ggplot2")
+BiocManager::install(setdiff(packages, rownames(installed.packages())))
 ```
 
 
@@ -77,4 +80,4 @@ With the input gene lists, twenty-nine GO terms were enriched in the GO enrichme
 
 
 ## License
-It is a free and open source software, licensed under []() (choose a license from the suggested list:  [GPLv3](https://github.com/github/choosealicense.com/blob/gh-pages/_licenses/gpl-3.0.txt), [MIT](https://github.com/github/choosealicense.com/blob/gh-pages/LICENSE.md), or [CC BY 4.0](https://github.com/github/choosealicense.com/blob/gh-pages/_licenses/cc-by-4.0.txt)).
+This code is free and open source, licensed under [GPLv3](https://github.com/github/choosealicense.com/blob/gh-pages/_licenses/gpl-3.0.txt).
