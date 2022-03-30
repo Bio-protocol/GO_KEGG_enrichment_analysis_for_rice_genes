@@ -28,7 +28,7 @@ go <- enricher(gene = genes, # a vector of gene id
                qvalueCutoff = 0.2, # q-value cutoff (default). q value: local FDR corrected p-value.
                minGSSize = 10, # minimal size of genes annotated for testing (default)
                maxGSSize = 500  # maximal size of genes annotated for testing (default)
-)
+              )
 
 ## save results
 go_df <- as.data.frame(go)
