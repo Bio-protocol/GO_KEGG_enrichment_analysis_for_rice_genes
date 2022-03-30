@@ -84,7 +84,7 @@ With the input gene lists, twenty-nine GO terms were enriched in the GO enrichme
 </p>
 
 
-![](figures/go_dotplot.pdf)
+![](figures/go_dotplot.png)
 
 
 ## License
