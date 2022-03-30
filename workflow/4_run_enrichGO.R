@@ -1,20 +1,22 @@
-
-##Step 2: GO enrichment analysis using annotations from AnnotationHub package
-
+## Step 2: GO enrichment analysis using annotations from AnnotationHub package
+## An R script to perform GO enrichment analysis using gene annotations provided by the AnnotatoinHub package.
 
 library(AnnotationHub) 
 library(clusterProfiler)
 
 # find rice orgDb
 hub <- AnnotationHub()
-query(hub, c("Oryza sativa","orgdb")) #output changed
 # output:
-# AH96211 | org.Oryza_sativa_(japonica_cultivar-group).eg.sqlite
-# AH96212 | org.Oryza_sativa_Japonica_Group.eg.sqlite           
-# AH96213 | org.Oryza_sativa_subsp._japonica.eg.sqlite
+# snapshotDate(): 2020-04-27
 
-# select the first one (as all three are very similar)
-rice <- hub[["AH96211"]] #changed based on new output
+query(hub, c("Oryza sativa","orgdb"))
+# output:
+# AH80658 | org.Oryza_sativa_(japonica_cultivar-group).eg.sqlite
+# AH80659 | org.Oryza_sativa_Japonica_Group.eg.sqlite           
+# AH80660 | org.Oryza_sativa_subsp._japonica.eg.sqlite  
+
+# select the first one, as all three are very similar
+rice <- hub[["AH80658"]]
 # checked keys in the database
 # keyTypes(rice) 
 
@@ -30,7 +32,6 @@ genes_eid <- IDtable[match(genes, IDtable$rapdb), "entrezgene"]
 genes_eid <- as.character(genes_eid[!is.na(genes_eid)])
 
 ## run enrichGO function
-library(clusterProfiler) #library
 go2 <- enrichGO(gene = genes_eid, # a vector of gene id
                 OrgDb = rice, # OrgDb object
                 ont = "BP", # One of "MF", "BP", and "CC" subontologies
@@ -40,5 +41,7 @@ go2 <- enrichGO(gene = genes_eid, # a vector of gene id
                 minGSSize = 10, # minimal size of genes annotated for testing (default)
                 maxGSSize = 500  # maximal size of genes annotated for testing (default)
                 )
+# NOTE: universe and keytype are not included because errors occur if do.
+
 go2_df <- as.data.frame(go2) 
 # result：no enriched GO terms
