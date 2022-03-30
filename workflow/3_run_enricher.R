@@ -14,9 +14,9 @@ bkgd <- read.table("input/bkgd.txt", header=T)
 bkgd <- bkgd[[1]]
 
 # TERM2GENE
-term2gene <- read.table("cache/goid2gene_BP.txt", sep="\t", header=T, quote="", stringsAsFactors = F) #change dir
+term2gene <- read.table("cache/goid2gene_BP.txt", sep="\t", header=T, quote="", stringsAsFactors = F)
 # TERM2NAME
-term2name <- read.table("cache/godb_BP.txt", sep="\t", header=T, quote="", stringsAsFactors = F) #change dir
+term2name <- read.table("cache/godb_BP.txt", sep="\t", header=T, quote="", stringsAsFactors = F)
 
 ## run the universal enrichment function, enricher
 go <- enricher(gene = genes, # a vector of gene id
@@ -28,14 +28,16 @@ go <- enricher(gene = genes, # a vector of gene id
                qvalueCutoff = 0.2, # q-value cutoff (default). q value: local FDR corrected p-value.
                minGSSize = 10, # minimal size of genes annotated for testing (default)
                maxGSSize = 500  # maximal size of genes annotated for testing (default)
-               )
+)
 
 ## save results
 go_df <- as.data.frame(go)
 write.table(go_df, "output/go_df.txt", sep="\t", row.names=FALSE, quote=FALSE)
 
 ## dot plot
-p1 <- dotplot(go, showCategory=10)
+p1 <- dotplot(go, showCategory=10, 
+              title = "Top 10 most statistically significant enriched GO terms (BP)",
+              font.size = 10)
 ggsave(p1,
-       filename = "figures/go_dotplot.pdf",
-       height = 12,width = 16,units = "cm") #change dir
+       filename = "figures/go_dotplot.png",
+       height = 12,width = 20,units = "cm") 
