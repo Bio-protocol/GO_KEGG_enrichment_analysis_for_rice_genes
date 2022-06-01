@@ -1,14 +1,14 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)
 
-# GO/KEGG Enrichment Analysis on Gene Lists from Rice (Oryza Sativa)
+# GO/KEGG Enrichment Analysis on Gene Lists from Rice (*Oryza Sativa*)
 
 ## Overview
 
-This is a workflow for using clusterProfiler software to perform GO and KEGG enrichment analysis for gene lists from rice. The gene annotations are the key to these analyses. For GO annotaion, two types of sources are used here: 1. self-curated annotations derived from public rice databases, and 2. GO annotatons from a bioconductor package, AnnotationHub. For KEGG annotation, the gene annotation is directly retrieved from the KEGG database when using the clusterProfiler enrichment function.
+This is a workflow for using clusterProfiler software to perform GO and KEGG enrichment analysis for gene lists from rice. The gene annotations are the key to these analyses. For GO annotaion, two types of sources are used here: 1. self-curated annotations derived from public rice databases, *i.e.* RAP-DB and OryzaBase, and 2. GO annotatons from a bioconductor package, AnnotationHub. For KEGG annotation, the gene annotation is directly retrieved from the KEGG database when using the clusterProfiler enrichment function.
 
 ## Introduction
 
-RNA-seq data analysis has been streamlined, and functional enrichment analysis is a critical step to provide biological insights on the results. Enrichment analysis, or over-representative analysis, is to examine whether a gene ontology or a biological pathway is enriched in the target gene list more than is expected by chance. Many tools were developed to contain both annotation files and enrichment test functions to streamline this process. The statistical tests were universal among different enrichment tests, while the lacking the annotation files for species under-study could be an obstacle. For instance, only 20 GO annotation databases were available under OrgDb from Bioconductor, where only one is the plant species, Arabidopsis. In this protocol, I focus on performing functional enrichment analysis on genes from rice, a model organism for the grass family, using one of the most commonly used enrichment analysis R software clusterProfiler (Yu et al., 2012). I provide a step-by-step instruction covering the GO analysis using annotation information from two different sources, and KEGG analysis using the annotation from the KEGG database. The scripts were mainly R scripts, with some Bash command lines for curating a GO annotation file. 
+RNA-seq data analysis has been streamlined, and functional enrichment analysis is a critical step to provide biological insights on the results. Enrichment analysis, or over-representative analysis, is to examine whether a gene ontology or a biological pathway is enriched in the target gene list more than is expected by chance. Many tools were developed to contain both annotation files and enrichment test functions to streamline this process. However, some plant species may still lack of gene annotation information, which could be an obstacle for the functional enrichment analysis. For instance, only 20 GO annotation databases were available under OrgDb from Bioconductor, where only one is the plant species, *Arabidopsis*. In this protocol, I focus on performing functional enrichment analysis on genes of rice, a model organism for the grass family, using one of the most commonly used enrichment analysis R software clusterProfiler (Yu et al., 2012). I provide a step-by-step instruction using annotation information obtained from two different ways. The scripts are mainly the R scripts, with some Bash command lines for curating a GO annotation file.
 
 
 ## Installation
@@ -36,8 +36,8 @@ BiocManager::install(setdiff(packages, rownames(installed.packages())))
 
 ## Input Data
 
-1.	Target gene list (genes.txt), background gene list (bkgd.txt, optional but recommended). The gene IDs are the RAP IDs in this protocol, e.g. Os01g0102500, Os01g0106300. See the /input folder.
-2.	The gene annotation file obtained from The Rice Annotation Project (RAP) Database (RAP-DB), including both the GO annotation information and RAP gene ID to RAP transcript ID conversion information. This file is a large data table, where each row is an individual transcript ID, and each column is a gene annotation information, and "GO" is the column which contains the GO annotations which are extracted further into the self-curated annotation files. [Link.](https://rapdb.dna.affrc.go.jp/download/archive/irgsp1/IRGSP-1.0_representative_annotation_2021-11-11.tsv.gz) 
+1.	Target gene list (genes.txt), background gene list (bkgd.txt, optional but recommended). The gene IDs are the RAP IDs in this protocol, *e.g.* Os01g0102500, Os01g0106300. See the */input* folder.
+2.	The gene annotation file obtained from The Rice Annotation Project Database (RAP-DB), including both the GO annotation information and RAP gene ID to RAP transcript ID conversion information. This file is a large data table, where each row is an individual transcript ID, and each column is a gene annotation information, and "GO" is the column which contains the GO annotations which are extracted into the self-curated annotation files. [Link.](https://rapdb.dna.affrc.go.jp/download/archive/irgsp1/IRGSP-1.0_representative_annotation_2021-11-11.tsv.gz) 
 3.	The gene annotation file from the OryzaBase website. This file is also a large data table, where each row is for a "Trait Gene ID", with annotations of "RAP ID" and "Gene Ontology", which are used for generating self-curated annotation files. [Link.](https://shigen.nig.ac.jp/rice/oryzabase/download/gene)
 4.	RAP ID to Entrez ID conversion table from the He Lab at Fujian Agriculture and Forestry University, China. [Link.](http://bioinformatics.fafu.edu.cn/riceidtable/)
 
@@ -46,16 +46,18 @@ BiocManager::install(setdiff(packages, rownames(installed.packages())))
 
 #### Step 1: GO enrichment analysis using annotations from self-curated annotation files
 
-- 1.1 Prepare rice gene GO annotation files using public annotation databases. (Step 1.a in the protocol)
+- 1.1 Prepare rice gene GO annotation files curated from public annotation databases.
 
 Run the command in Linux.
 ```
 sh workflow/1_curate_rice_GO_annotation.sh
 ```
 
-After this step, work on a local computer and run the following scripts in R. Also, create two new folders: data and output. data: to save intermediate result files. output: to save the final files. Save the files from Step 1 into the data folder. 
+After this step, work on a local computer and run the following scripts in R. 
 
-- 1.2 Prepare self-provided GO annotations for clusterProfiler function. (Step 1.b in the protocol)
+Also, create two new folders: data and output. */data*: to save intermediate result files. */output*: to save the final files. Save the files from Step 1.1 into the */data* folder. 
+
+- 1.2 Prepare the GO ID to GO name mapping files.
 
 ```
 source("workflow/2_prep_GO_annotation_files.R")
@@ -69,7 +71,7 @@ Here are the resulting GO annotation files, TERM2NAME (optional but highly recom
 </p>
 
 
-- 1.3 Run universal enrichment function, enricher. (Step 1.c and 1.d in the protocol)
+- 1.3 Run universal enrichment function, *enricher*.
 
 ```
 source("workflow/3_run_enricher.R")
@@ -89,7 +91,7 @@ source("workflow/5_run_enrichKEGG.R")
 
 ## Expected results
 
-With the input gene lists, twenty-nine GO terms were enriched in the GO enrichment analysis using the self-curated annotation files, while none when using annoations from the AnnotationHub package. And eleven KEGG terms were enriched in the KEGG enrichment analysis using the annotation from the KEGG database. The result tables of the enriched GO/KEGG terms are in the /output folder, and the screenshots of the tables are shown below. The top 10 most statisitcally significant enriched GO and KEGG terms are visualized by dot plots, which are saved in the /figures folder and are shown below.
+With the input gene lists, twenty-nine GO terms were enriched in the GO enrichment analysis using the self-curated annotation files, while none when using annoations from the AnnotationHub package. And eleven KEGG terms were enriched in the KEGG enrichment analysis using the annotation from the KEGG database. The result tables of the enriched GO/KEGG terms are in the */output* folder, and the screenshots of the tables are shown below. The top 10 most statisitcally significant enriched GO and KEGG terms are visualized by dot plots, which are saved in the */figures* folder and are shown below.
 
 
 <p float="center">
